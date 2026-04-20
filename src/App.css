@@ -1,0 +1,706 @@
+:root {
+  --bg0: #0b1f3a;
+  --bg1: #1b2a6b;
+  --surface: #f5f7fa;
+
+  --primary: #1e90ff;
+  --primaryHover: #187bcd;
+  --accent: #ffc857;
+
+  --win: #2ecc71;
+  --lose: #e74c3c;
+
+  --text: #1c1c1c;
+  --muted: #6b7280;
+
+  --shadow: 0 18px 50px rgba(11, 31, 58, 0.22);
+  --shadow2: 0 10px 25px rgba(11, 31, 58, 0.16);
+  --neonBlue: 0 0 18px rgba(30, 144, 255, 0.35);
+  --neonGreen: 0 0 18px rgba(46, 204, 113, 0.28);
+
+  --r12: 12px;
+  --r16: 16px;
+  --r20: 20px;
+
+  --max: 1180px;
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg0), var(--bg1));
+}
+
+.page {
+  min-height: 100vh;
+  padding: 34px 18px 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--max);
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-top: 6px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.h1 {
+  margin: 0;
+  font-size: 38px;
+  letter-spacing: -0.02em;
+  color: var(--surface);
+}
+
+.sub {
+  margin: 0;
+  color: rgba(245, 247, 250, 0.78);
+  font-size: 14px;
+}
+
+.pill {
+  font-size: 12px;
+  color: rgba(245, 247, 250, 0.92);
+  background: rgba(245, 247, 250, 0.12);
+  border: 1px solid rgba(245, 247, 250, 0.22);
+  padding: 7px 10px;
+  border-radius: 999px;
+}
+
+.panel {
+  background: rgba(245, 247, 250, 0.92);
+  border: 1px solid rgba(245, 247, 250, 0.55);
+  border-radius: var(--r20);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(28, 28, 28, 0.08);
+}
+
+.toolbarLeft,
+.toolbarRight {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid rgba(28, 28, 28, 0.12);
+  background: #ffffff;
+  color: var(--text);
+  padding: 11px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btnPrimary {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: rgba(30, 144, 255, 0.35);
+  box-shadow: var(--neonBlue);
+}
+
+.btnPrimary:hover {
+  background: var(--primaryHover);
+}
+
+.btnNext {
+  background: rgba(30, 144, 255, 0.1);
+  border-color: rgba(30, 144, 255, 0.25);
+  color: var(--text);
+}
+
+.btnGhost {
+  background: #ffffff;
+}
+
+.badgePhase {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(28, 28, 28, 0.12);
+  background: #ffffff;
+}
+
+.phaseDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: var(--neonBlue);
+}
+
+.phaseText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.phaseText strong {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.phaseText span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.content {
+  padding: 18px 16px 22px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 14px;
+}
+
+.sectionTitle h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+}
+
+.sectionTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(28, 28, 28, 0.45);
+}
+
+.crumbLabel {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.crumbSep {
+  color: rgba(28, 28, 28, 0.25);
+  font-weight: 900;
+}
+
+.crumbDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(28, 28, 28, 0.22);
+  box-shadow: none;
+}
+
+.crumb.done {
+  color: rgba(28, 28, 28, 0.55);
+}
+
+.crumb.done .crumbDot {
+  background: rgba(28, 28, 28, 0.28);
+}
+
+.crumb.active {
+  color: var(--text);
+}
+
+.crumb.active .crumbDot {
+  background: var(--primary);
+  box-shadow: var(--neonBlue);
+}
+
+.crumb.upcoming {
+  color: rgba(28, 28, 28, 0.35);
+}
+
+.crumb.upcoming .crumbDot {
+  background: rgba(28, 28, 28, 0.18);
+}
+
+.hrSoft {
+  height: 1px;
+  background: rgba(28, 28, 28, 0.08);
+  margin: 14px 0;
+}
+
+.notice {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(30, 144, 255, 0.22);
+  background: rgba(30, 144, 255, 0.1);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.error {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(231, 76, 60, 0.22);
+  background: rgba(231, 76, 60, 0.1);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.gridGroups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 1020px) {
+  .gridGroups {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .gridGroups {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  border-radius: var(--r16);
+  box-shadow: var(--shadow2);
+  overflow: hidden;
+}
+
+.cardHead {
+  padding: 12px 12px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: var(--bg0);
+  border-bottom: 1px solid rgba(245, 247, 250, 0.18);
+}
+
+.cardHead .gName {
+  font-weight: 1000;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.cardHead .gHint {
+  color: rgba(245, 247, 250, 0.75);
+  font-size: 12px;
+}
+
+.list {
+  margin: 0;
+  padding: 10px 12px 12px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teamRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  overflow: hidden;
+}
+
+.teamRow--qualified {
+  border-color: rgba(46, 204, 113, 0.35);
+  background: rgba(46, 204, 113, 0.12);
+  box-shadow: var(--neonGreen);
+}
+
+.teamRow--last {
+  border-color: rgba(231, 76, 60, 0.3);
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.teamMain {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.teamMain .name {
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamMain .meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.rank {
+  flex: 0 0 auto;
+  font-weight: 1000;
+  color: var(--text);
+  background: rgba(28, 28, 28, 0.06);
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  padding: 4px 8px;
+  border-radius: 999px;
+  height: fit-content;
+}
+
+.matches {
+  padding: 0 12px 12px;
+}
+
+.matchesTitle {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.matchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.matchRow .left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.matchRow .r {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.matchRow .teams {
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.matchRow .teams .win {
+  color: var(--win);
+  font-weight: 1000;
+}
+
+.matchRow .teams .lose {
+  color: var(--lose);
+  font-weight: 1000;
+}
+
+.matchRow .score {
+  flex: 0 0 auto;
+  min-width: 44px;
+  text-align: right;
+  font-weight: 1000;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.summary {
+  margin-top: 14px;
+  border-top: 1px solid rgba(28, 28, 28, 0.08);
+  padding-top: 14px;
+}
+
+.summaryToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+}
+
+.summaryToggle strong {
+  font-size: 13px;
+}
+
+.summaryToggle span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pre {
+  margin-top: 10px;
+  background: rgba(11, 31, 58, 0.1);
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  border-radius: 14px;
+  padding: 12px;
+  overflow: auto;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.bracketWrap {
+  padding: 14px;
+  border-radius: var(--r20);
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  background: rgba(245, 247, 250, 0.92);
+  overflow: auto;
+}
+
+.bracket {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  gap: 14px;
+  align-items: start;
+  min-width: 980px;
+}
+
+.bracket.bracket--single {
+  grid-template-columns: 1fr;
+  min-width: 0;
+}
+
+.bracketCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bracketColHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--bg0);
+  border: 1px solid rgba(245, 247, 250, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.bracketColHeader strong {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.bracketColHeader span {
+  font-size: 12px;
+  color: rgba(245, 247, 250, 0.75);
+}
+
+.bracketMatch {
+  padding: 12px 12px;
+  border-radius: var(--r16);
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  background: #ffffff;
+  box-shadow: var(--shadow2);
+  overflow: hidden;
+}
+
+.bracketTeams {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teamLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border:  1px solid rgba(28, 28, 28, 0.1);
+  background: rgba(245, 247, 250, 0.8);
+}
+
+.teamLine .tName {
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--text);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamLine .tScore {
+  font-weight: 1000;
+  font-size: 13px;
+}
+
+.teamLine.isWinner {
+  border-color: rgba(46, 204, 113, 0.35);
+  background: rgba(46, 204, 113, 0.12);
+  box-shadow: var(--neonGreen);
+}
+
+.matchMeta {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.penTag {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 144, 255, 0.25);
+  background: rgba(30, 144, 255, 0.1);
+  color: var(--text);
+  font-weight: 900;
+}
+
+.bracketWinnerBadge {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 200, 87, 0.45);
+  background: rgba(255, 200, 87, 0.2);
+  font-weight: 1000;
+  color: var(--text);
+}
+
+.bracketCol.isActive .bracketColHeader {
+  border-color: rgba(30, 144, 255, 0.55);
+  box-shadow: var(--neonBlue);
+}
+
+.bracketCol.isInactive {
+  opacity: 0.55;
+  filter: saturate(0.85);
+}
+
+.bracketCol.isInactive .bracketMatch {
+  box-shadow: none;
+}
+
+@media (max-width: 700px) {
+  .bracket {
+    min-width: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .bracketWrap {
+    overflow: visible;
+  }
+}
+
+.finalHero {
+  margin-top: 14px;
+  padding: 18px;
+  border-radius: var(--r20);
+  background: #ffffff;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  box-shadow: var(--shadow2);
+}
+
+.finalHero h2 {
+  margin: 0 0 8px;
+}
+
+.finalChampion {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.finalChampion .label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.finalChampion .name {
+  font-size: 34px;
+  font-weight: 1000;
+  color: var(--accent);
+}
