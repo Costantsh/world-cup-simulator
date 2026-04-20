@@ -201,7 +201,7 @@ body {
 
 .sectionTitle {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   margin: 6px 0 14px;
@@ -211,6 +211,72 @@ body {
   margin: 0;
   font-size: 18px;
   letter-spacing: 0.01em;
+}
+
+.sectionTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(28, 28, 28, 0.45);
+}
+
+.crumbLabel {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.crumbSep {
+  color: rgba(28, 28, 28, 0.25);
+  font-weight: 900;
+}
+
+.crumbDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(28, 28, 28, 0.22);
+  box-shadow: none;
+}
+
+.crumb.done {
+  color: rgba(28, 28, 28, 0.55);
+}
+
+.crumb.done .crumbDot {
+  background: rgba(28, 28, 28, 0.28);
+}
+
+.crumb.active {
+  color: var(--text);
+}
+
+.crumb.active .crumbDot {
+  background: var(--primary);
+  box-shadow: var(--neonBlue);
+}
+
+.crumb.upcoming {
+  color: rgba(28, 28, 28, 0.35);
+}
+
+.crumb.upcoming .crumbDot {
+  background: rgba(28, 28, 28, 0.18);
 }
 
 .hrSoft {
@@ -469,6 +535,11 @@ body {
   min-width: 980px;
 }
 
+.bracket.bracket--single {
+  grid-template-columns: 1fr;
+  min-width: 0;
+}
+
 .bracketCol {
   display: flex;
   flex-direction: column;
@@ -522,7 +593,7 @@ body {
   gap: 10px;
   padding: 8px 10px;
   border-radius: 12px;
-  border: 1px solid rgba(28, 28, 28, 0.1);
+  border:  1px solid rgba(28, 28, 28, 0.1);
   background: rgba(245, 247, 250, 0.8);
 }
 
