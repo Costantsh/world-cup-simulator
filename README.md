@@ -120,6 +120,12 @@ After running a full simulation:
 
 ## How to Run Locally
 
+## Testing
+
+```bash
+npm run test:run
+```
+
 ### Requirements
 
 * Node.js 18+
