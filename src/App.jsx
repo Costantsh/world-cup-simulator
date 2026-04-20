@@ -7,6 +7,7 @@ import { simulateGroupStage } from "./services/matchService.js";
 import { createRoundOf16, simulateNextPhase } from "./services/knockoutService.js";
 
 const PHASES = ["GROUPS", "ROUND16", "QUARTERS", "SEMIS", "FINAL"];
+const KNOCKOUT_PHASES = ["ROUND16", "QUARTERS", "SEMIS", "FINAL"];
 
 function getPhaseLabel(phase) {
   switch (phase) {
@@ -23,6 +24,43 @@ function getPhaseLabel(phase) {
     default:
       return phase;
   }
+}
+
+function getKnockoutCrumbs(activePhase) {
+  const labels = {
+    ROUND16: "Oitavas",
+    QUARTERS: "Quartas",
+    SEMIS: "Semis",
+    FINAL: "Final",
+  };
+
+  const activeIndex = KNOCKOUT_PHASES.indexOf(activePhase);
+
+  return KNOCKOUT_PHASES.map((key, index) => ({
+    key,
+    label: labels[key],
+    state: index < activeIndex ? "done" : index === activeIndex ? "active" : "upcoming",
+  }));
+}
+
+function KnockoutBreadcrumb({ activePhase }) {
+  const crumbs = getKnockoutCrumbs(activePhase);
+
+  return (
+    <nav className="crumbs" aria-label="Fases do mata-mata">
+      {crumbs.map((crumb, index) => (
+        <span className={`crumb ${crumb.state}`} key={crumb.key}>
+          <span className="crumbDot" aria-hidden="true" />
+          <span className="crumbLabel">{crumb.label}</span>
+          {index < crumbs.length - 1 && (
+            <span className="crumbSep" aria-hidden="true">
+              &gt;
+            </span>
+          )}
+        </span>
+      ))}
+    </nav>
+  );
 }
 
 export default function App() {
@@ -214,10 +252,13 @@ export default function App() {
 
             {tournament?.groups && phase === "GROUPS" && <GroupsView groups={tournament.groups} />}
 
-            {tournament?.round16 && ["ROUND16", "QUARTERS", "SEMIS", "FINAL"].includes(phase) && (
+            {tournament?.round16 && KNOCKOUT_PHASES.includes(phase) && (
               <>
                 <div className="sectionTitle">
-                  <h2>Mata-mata (Bracket)</h2>
+                  <div className="sectionTitleBlock">
+                    <h2>Mata-mata (Bracket)</h2>
+                    <KnockoutBreadcrumb activePhase={phase} />
+                  </div>
                   <span className="pill">{getPhaseLabel(phase)}</span>
                 </div>
 
@@ -227,14 +268,11 @@ export default function App() {
                   semis={tournament.semis}
                   final={tournament.final}
                   activePhase={phase}
+                  visiblePhase={phase}
                 />
 
                 {phase === "FINAL" && (
-                  <FinalView
-                    champion={tournament.champion}
-                    finalMatch={tournament.final}
-                    apiResponse={tournament.apiResponse}
-                  />
+                  <FinalView champion={tournament.champion} finalMatch={tournament.final} apiResponse={tournament.apiResponse} />
                 )}
               </>
             )}
@@ -265,6 +303,7 @@ export default function App() {
                   semis={tournament.semis}
                   final={tournament.final}
                   activePhase="FINAL"
+                  visiblePhase="ALL"
                 />
 
                 <div className="hrSoft" />
@@ -356,7 +395,7 @@ function GroupsView({ groups }) {
   );
 }
 
-function BracketView({ round16, quarters, semis, final, activePhase }) {
+function BracketView({ round16, quarters, semis, final, activePhase, visiblePhase }) {
   const columns = [
     { key: "r16", phaseKey: "ROUND16", title: "Oitavas", matches: round16 },
     { key: "qf", phaseKey: "QUARTERS", title: "Quartas", matches: quarters },
@@ -364,10 +403,15 @@ function BracketView({ round16, quarters, semis, final, activePhase }) {
     { key: "fi", phaseKey: "FINAL", title: "Final", matches: [final] },
   ];
 
+  const filteredColumns =
+    visiblePhase === "ALL" ? columns : columns.filter((col) => col.phaseKey === visiblePhase);
+
+  const bracketClassName = `bracket ${filteredColumns.length === 1 ? "bracket--single" : ""}`;
+
   return (
     <div className="bracketWrap">
-      <div className="bracket">
-        {columns.map((column) => {
+      <div className={bracketClassName}>
+        {filteredColumns.map((column) => {
           const isActive = activePhase === column.phaseKey;
           const columnClass = `bracketCol ${isActive ? "isActive" : "isInactive"}`;
 
@@ -403,10 +447,6 @@ function BracketView({ round16, quarters, semis, final, activePhase }) {
                       </span>
                       {wentToPenalties && <span className="penTag">Pênaltis {match.penA}:{match.penB}</span>}
                     </div>
-
-                    {column.phaseKey === "FINAL" && (
-                      <div className="bracketWinnerBadge">Campeão: {match.winner.name}</div>
-                    )}
                   </div>
                 );
               })}
