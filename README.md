@@ -1,8 +1,11 @@
 # World Cup Simulator
 
-A web application built with React + Vite that consumes the official World Cup API, simulates the full tournament (group stage and knockout rounds), and submits the final result as required by the challenge.
+A web application built with React and Vite that consumes the challenge 
+API, simulates the full World Cup tournament, and submits the final result 
+following the required specifications.
 
-**Live demo:** https://costantsh.github.io/world-cup-simulator/
+ **Live demo:** 
+https://costantsh.github.io/world-cup-simulator/
 
 ---
 
@@ -179,6 +182,7 @@ npx gh-pages -d dist
 ## Project Structure
 
 ```txt
+
 src/
   App.jsx
   App.css
@@ -190,8 +194,13 @@ src/
     groupService.js
     matchService.js
     knockoutService.js
+    __tests__/
+      groupService.test.js
+      matchService.test.js
+      knockoutService.test.js
 
 public/
   favicon.svg
   icons.svg
+
 ```
